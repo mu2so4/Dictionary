@@ -10,6 +10,7 @@ int main(int argc, char** argv) {
     }
     std::ifstream in(argv[1]);
     std::ofstream out(argv[2]);
+    /*
     Dictionary a, b;
     for(int index = 0; index < 6; index++)
         a.nextWord(in);
@@ -24,6 +25,11 @@ int main(int argc, char** argv) {
 
     a.copy(b);
     a.exportData(out);
+    */
+
+    Dictionary dictionary;
+    dictionary.importData(in);
+    dictionary.exportData(out);
 
     in.close();
     out.close();

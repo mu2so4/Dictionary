@@ -7,7 +7,7 @@ int main(int argc, char** argv) {
     if(argc != 3) {
         std::cerr << "Input error\n";
         return 0;
-    }
+    }//
     std::ifstream in(argv[1]);
     std::ofstream out(argv[2]);
     Dictionary a, b;

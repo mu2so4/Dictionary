@@ -9,15 +9,15 @@ class Dictionary {
     static std::string parse(std::istream &input);
     void addToDictionary(const std::string &word);
 public:
-    Dictionary();
+    Dictionary() = default;
     explicit Dictionary(std::istream &input);
 
     ~Dictionary();
 
     bool nextWord(std::istream &input);
-    void readAll(std::istream &input);
+    void importData(std::istream &input);
     void copy(const Dictionary &other_dictionary);
-    void printAll(std::ostream &output) const;
+    void exportData(std::ostream &output) const;
 };
 
 #endif //OLYMP_DICTIONARY_H

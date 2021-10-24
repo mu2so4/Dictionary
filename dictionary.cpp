@@ -3,10 +3,8 @@
 #include <algorithm>
 
 
-Dictionary::Dictionary() = default;
-
 Dictionary::Dictionary(std::istream &input) {
-    readAll(input);
+    importData(input);
 }
 
 Dictionary::~Dictionary() {
@@ -38,7 +36,7 @@ bool Dictionary::nextWord(std::istream &input) {
     return true;
 }
 
-void Dictionary::readAll(std::istream &input) {
+void Dictionary::importData(std::istream &input) {
     while(!input.eof())
         nextWord(input);
 }
@@ -51,8 +49,8 @@ void Dictionary::copy(const Dictionary &other_dictionary) {
     }
 }
 
-void Dictionary::printAll(std::ostream &output) const {
-    std::pair<std::string, int> arr[words.size()];
+void Dictionary::exportData(std::ostream &output) const {
+    auto *arr = new std::pair<std::string, int>[words.size()];
     std::copy(words.begin(), words.end(), arr);
     std::sort(arr, arr + words.size(),
               [](const std::pair<std::string, int> &a, const std::pair<std::string, int> &b)->bool {
@@ -60,6 +58,7 @@ void Dictionary::printAll(std::ostream &output) const {
                   if(a.second < b.second) return false;
                   return a.first.compare(b.first) < 0;
     });
-    for(const auto &item : arr)
-        output << item.first << '\t' << item.second << '\n';
+    for(int index = 0; index < words.size(); index++)
+        output << arr[index].first << '\t' << arr[index].second << '\n';
+    delete[] arr;
 }

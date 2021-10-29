@@ -15,6 +15,7 @@ void Dictionary::addToDictionary(const std::string &word) {
     if(words.find(word) == words.end())
         words[word] = 1;
     else words[word]++;
+    count++;
 }
 
 std::string Dictionary::parse(std::istream &input) {
@@ -58,7 +59,11 @@ void Dictionary::exportData(std::ostream &output) const {
                   if(a.second < b.second) return false;
                   return a.first.compare(b.first) < 0;
     });
-    for(int index = 0; index < words.size(); index++)
-        output << arr[index].first << '\t' << arr[index].second << '\n';
+    for(int index = 0; index < words.size(); index++) {
+        output.precision(0);
+        output << arr[index].first << '\t' << arr[index].second << '\t';
+        output.precision(2);
+        output << 100. * arr[index].second / count << "%" << '\n';
+    }
     delete[] arr;
 }

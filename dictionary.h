@@ -5,6 +5,7 @@
 
 class Dictionary {
     std::map<std::string, int> words;
+    int count = 0;
 
     static std::string parse(std::istream &input);
     void addToDictionary(const std::string &word);
